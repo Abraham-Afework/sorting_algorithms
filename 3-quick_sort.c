@@ -50,8 +50,8 @@ int partition(int array[], int lb, int hb, size_t size)
 {
 	int index, j;
 
-	index = lb;
-	for (j = lb; j < hb; j++)
+	index = lb - 1;
+	for (j = lb; j <= hb - 1; j++)
 	{
 		if (array[j] <= array[hb])
 		{
@@ -59,10 +59,10 @@ int partition(int array[], int lb, int hb, size_t size)
 			index++;
 		}
 	}
-	swap(&array[index], &array[hb]);
+	swap(&array[index + 1], &array[hb]);
 	print_array(array, size);
 
-	return (index);
+	return (index + 1);
 }
 /**
  * swap - a function that swaps to numbers
