@@ -9,6 +9,10 @@
  */
 void quick_sort(int *array, size_t size)
 {
+	if (array == NULL || size == 0)
+	{
+		return;
+	}
 	if (is_sorted(array, size))
 	{
 		return;
@@ -55,13 +59,13 @@ int partition(int array[], int lb, int hb, size_t size)
 	{
 		if (array[j] <= array[hb])
 		{
-			swap(&array[index], &array[j]);
 			index++;
+			swap(&array[index], &array[j]);
+
 		}
 	}
 	swap(&array[index + 1], &array[hb]);
 	print_array(array, size);
-
 	return (index + 1);
 }
 /**
