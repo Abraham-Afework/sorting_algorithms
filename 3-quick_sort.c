@@ -9,6 +9,10 @@
  */
 void quick_sort(int *array, size_t size)
 {
+	if (is_sorted(array, size))
+	{
+		return;
+	}
 	recursion(array, 0, size - 1, size);
 }
 /**
@@ -74,4 +78,22 @@ void swap(int *first, int *second)
 	temp = *first;
 	*first = *second;
 	*second = temp;
+}
+/**
+ * is_sorted - a function that checkes if an array is sorted
+ * @array: array containing unsorted numbers(unsorted array)
+ * @size: the size of the array
+ *
+ * Return: 1 if array is sorted else 0
+*/
+int is_sorted(int *array, size_t size)
+{	size_t i;
+	for (i = 0; i < size - 1; i++)
+	{
+		if (array[i] > array[i + 1])
+		{
+			return (0);
+		}
+	}
+	return (1);
 }
