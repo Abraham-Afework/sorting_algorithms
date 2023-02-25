@@ -9,7 +9,7 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	if (array == NULL || size == 0)
+	if (array == NULL || size < 2)
 	{
 		return;
 	}
@@ -55,33 +55,40 @@ int partition(int array[], int lb, int hb, size_t size)
 	int index, j;
 
 	index = lb - 1;
+
 	for (j = lb; j <= hb - 1; j++)
 	{
 		if (array[j] <= array[hb])
 		{
 			index++;
-			swap(&array[index], &array[j]);
+			swap(&array[index], &array[j], array, size);
 
 		}
 	}
-	swap(&array[index + 1], &array[hb]);
-	print_array(array, size);
+
+	swap(&array[index + 1], &array[hb], array, size);
+	/*print_array(array, size);*/
 	return (index + 1);
 }
 /**
  * swap - a function that swaps to numbers
  * @first: the first number to be swapped on the second index
  * @second: the second number to be swapped on the first index
+ * @array: array containing unsorted numbers(unsorted array)
+ * @size: the size of the array
  *
  */
 
-void swap(int *first, int *second)
+void swap(int *first, int *second, int *array, size_t size)
 {
 	int temp;
 
 	temp = *first;
 	*first = *second;
 	*second = temp;
+
+	if (temp != *first)
+		print_array(array, size);
 }
 /**
  * is_sorted - a function that checkes if an array is sorted
